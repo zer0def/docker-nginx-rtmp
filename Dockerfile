@@ -20,6 +20,8 @@ RUN apk add --no-cache \
   linux-headers \
   make \
   musl-dev \
+  geoip \
+  geoip-dev \
   openssl \
   openssl-dev \
   pcre \
@@ -47,11 +49,30 @@ RUN \
   --prefix=/usr/local/nginx \
   --add-module=/tmp/nginx-rtmp-module-${NGINX_RTMP_VERSION} \
   --conf-path=/etc/nginx/nginx.conf \
+  --with-compat \
   --with-threads \
   --with-file-aio \
+  --with-http_addition_module \
+  --with-http_auth_request_module \
+  --with-http_flv_module \
+  --with-http_geoip_module \
+  --with-http_gunzip_module \
+  --with-http_gzip_static_module \
+  --with-http_mp4_module \
+  --with-http_random_index_module \
+  --with-http_realip_module \
+  --with-http_secure_link_module \
+  --with-http_slice_module \
   --with-http_ssl_module \
   --with-debug \
   --with-http_stub_status_module \
+  --with-http_sub_module \
+  --with-http_v2_module \
+  --with-stream \
+  --with-stream_geoip_module \
+  --with-stream_realip_module \
+  --with-stream_ssl_module \
+  --with-stream_ssl_preread_module \
   --with-cc-opt="-Wimplicit-fallthrough=0" && \
   make && \
   make install
@@ -144,6 +165,7 @@ RUN apk add --no-cache \
   gettext \
   openssl \
   pcre \
+  geoip \
   lame \
   libogg \
   curl \
